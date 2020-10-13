@@ -1,17 +1,11 @@
 package supermarket;
 
 import supermarket.model.Buyer;
-import supermarket.model.Supermarket;
 import supermarket.model.products.Product;
-import supermarket.service.AddingService;
 import supermarket.service.BuyingService;
-import supermarket.service.DeletingService;
+import supermarket.service.ProductService;
 import supermarket.view.Show;
-
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalQueries;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +20,9 @@ public class Main {
             Buyer nikita = BuyingService.getRandomBuyer();
             show.greetings(localDate, nikita); //Приветствие
 
-            AddingService.addToList(list); //Добавление продуктов
+            ProductService.addToList(list); //Добавление продуктов
 
-            DeletingService.checkShelf_date(list, localDate); //Удалить просрочку
+            ProductService.checkShelfDate(list, localDate); //Удалить просрочку
 
             show.items(list, localDate); // Показ продуктов
 

@@ -7,24 +7,15 @@ import supermarket.model.products.Vegetables;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 public class DiscountService {
     public boolean hasDiscount(Product product, LocalDate date) {
-
-        if (product.getShelfDate().until(date, ChronoUnit.DAYS) >= 0 && product.getShelfDate().until(date, ChronoUnit.DAYS) <= 3) {
-            return true;
-        } else {
-            return false;
-        }
+        return product.getShelfDate().until(date, ChronoUnit.DAYS) >= 0
+                && product.getShelfDate().until(date, ChronoUnit.DAYS) <= 3;
     }
 
     public static boolean hasExpired(Product product, LocalDate date) {
-        if (product.getShelfDate().isBefore(date)) {
-            return true;
-        } else {
-            return false;
-        }
+        return product.getShelfDate().isBefore(date);
     }
 
     public static double discount(Product p, LocalDate date) {

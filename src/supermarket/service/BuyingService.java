@@ -1,17 +1,17 @@
 package supermarket.service;
 
 import supermarket.model.Buyer;
+import supermarket.model.BuyingResult;
 import supermarket.model.products.Product;
 import supermarket.model.Types;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class BuyingService {
 
-    public static ReturnResult buy(Product product, Buyer buyer, LocalDate localDate) {
+    public static BuyingResult buy(Product product, Buyer buyer, LocalDate localDate) {
         double price;
 
         double virtualAccountBS = buyer.getVirtualAccount();
@@ -32,12 +32,9 @@ public class BuyingService {
                 buyer.setVirtualAccount(virtualAccountBS);
                 buyer.setAccount(accountBS);
 
-                return new ReturnResult(price, true);
-
-                //System.out.println("Вы взяли " + product.getName() + ". Этот продукт стоит: " + price);
+                return new BuyingResult(price, true);
             } else {
-                //System.out.println("Недостаточно средств!");
-                return new ReturnResult(false);
+                return new BuyingResult(false);
             }
 
         } else {
@@ -50,10 +47,6 @@ public class BuyingService {
                 weighty_price = product.getPrice();
             }
 
-            //System.out.println("Вы выбрали " + product.getName() + ". Сколько килограммов вы хотите взять?");
-            //Scanner scn = new Scanner(System.in);
-            //quantityBS = Double.parseDouble(scn.nextLine());
-
             weighty_price *= quantityBS;
 
             if (virtualAccountBS >= weighty_price) {
@@ -62,13 +55,10 @@ public class BuyingService {
 
                 buyer.setVirtualAccount(virtualAccountBS);
                 buyer.setAccount(accountBS);
+                return new BuyingResult(quantityBS, weighty_price, true);
 
-                return new ReturnResult(quantityBS, weighty_price, true);
-
-                //System.out.println("Вы взяли " + product.getName() + "." + "(" + quantityBS + " кг.) " + "Этот товар стоит: " + weighty_price);
             } else {
-                //System.out.println("Недостаточно средств!");
-                return new ReturnResult(false);
+                return new BuyingResult(false);
             }
 
         }

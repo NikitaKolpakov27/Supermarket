@@ -12,6 +12,13 @@ public class Product {
     protected String name;
     protected String kind;
 
+    public Product(LocalDate date, String name, String kind, double price) {
+        this.shelfDate = date;
+        this.name = name;
+        this.kind = kind;
+        this.price = price;
+    }
+
     public String getName() {
         return name;
     }
