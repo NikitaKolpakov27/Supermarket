@@ -28,7 +28,7 @@ public class Main {
 
             show.buying(nikita, list, localDate); // Процесс покупки
 
-            localDate = BuyingService.dayChange(localDate); // Смена дня
+            localDate = Show.dayChange(localDate); // Смена дня
             days--;
         }
     }

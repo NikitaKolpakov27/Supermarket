@@ -28,7 +28,7 @@ public class Show {
             for (Product product : products) {
                 if (product.hasDiscount(product, localDate)) {
                     int dis = (int) (100 - (100 / DiscountService.discount(product, localDate)));
-                    sale = " (скидка " + dis + "%)";
+                    sale = "(скидка " + dis + "%)";
                     System.out.print(String.format("%s - %f руб. %s; ", product.getName(), product.getPrice(), sale));
                 } else {
                     System.out.print(product.getName() + " - " + product.getPrice() + " руб.; ");
@@ -47,13 +47,14 @@ public class Show {
             System.out.println("\nЧто вы хотите взять? --> ");
             double acc = buyer.getAccount();
             answer = scn.nextLine();
+            double quan = 0;
 
             for (List<Product> products : list) {
                 for (Product product : products) {
                     if (answer.equalsIgnoreCase(product.getName())) {
 
-                        BuyingResult ret = BuyingService.buy(product, buyer, localDate);
                         if (product.getType() == Types.SINGLE_PIECE) {
+                            BuyingResult ret = BuyingService.buySinglePiece(product, buyer, localDate);
                             if (ret.isSuccess()) {
                                 System.out.println("Вы взяли " + product.getName() + ". Этот продукт стоит: " + ret.getPrice());
                             } else {
@@ -63,8 +64,7 @@ public class Show {
                         } else {
                             System.out.println("Вы выбрали " + product.getName() + ". Сколько килограммов вы хотите взять?");
                             double kg = Double.parseDouble(scn.nextLine());
-                            ret.setQuantity(kg);
-                            ret.setWeighty_price(ret.getQuantity() * ret.getWeighty_price());
+                            BuyingResult ret = BuyingService.buyWeighty(product, buyer, localDate, kg);
                             double productPrice = ret.getWeighty_price();
 
                             if (ret.isSuccess()) {
@@ -74,11 +74,12 @@ public class Show {
                                 System.out.println("Недостаточно средств!");
                             }
                             acc = acc + productPrice;
+                            quan = ret.getQuantity();
                         }
 
                         if (!(acc > buyer.getMoney())) {
                             if (product.getType() == Types.WEIGHTY) {
-                                newBuys.add(product.getName() + " = " + ret.getQuantity());
+                                newBuys.add(product.getName() + " = " + quan + " кг");
                             } else {
                                 newBuys.add(product.getName() + " = " + 1);
                             }
@@ -106,5 +107,17 @@ public class Show {
         System.out.println("\n---------------------");
         System.out.println(String.format("Итого к оплате: %f. Денег осталось: %f",  buyer.getAccount(),  buyer.getMoney()));
         System.out.println("До скорых встреч!\n");
+    }
+
+    public static LocalDate dayChange(LocalDate localDate) {
+        localDate = localDate.plusDays(1);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return localDate;
     }
 }

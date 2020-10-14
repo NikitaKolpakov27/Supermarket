@@ -17,7 +17,7 @@ public class ProductService {
         List<Product> alc = new ArrayList<>();
 
         LocalDate milkDate = LocalDate.of(2020, 10, 24);
-        LocalDate tomatDate = LocalDate.of(2020, 10, 12);
+        LocalDate tomatDate = LocalDate.of(2020, 10, 15);
         LocalDate applesDate = LocalDate.of(2020, 12, 11);
         LocalDate vodkaDate = LocalDate.of(2023, 10, 24);
 
