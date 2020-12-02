@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="408.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="supermarket.view.moneyErrorController">
+    <children>
+        <Label fx:id="errorMenu" alignment="CENTER" layoutX="88.0" layoutY="14.0" prefHeight="76.0" prefWidth="621.0" text="Ошибка" textFill="#ff0202">
+            <font>
+                <Font name="Corbel" size="25.0" />
+            </font>
+        </Label>
+        <Label fx:id="product" layoutX="461.0" layoutY="106.0" prefHeight="38.0" prefWidth="125.0" />
+      <Label fx:id="noMoney" layoutX="271.0" layoutY="106.0" prefHeight="112.0" prefWidth="286.0" text="Недостаточно средств">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="back" layoutX="316.0" layoutY="244.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Вернуться в магазин" />
+    </children>
+</AnchorPane>

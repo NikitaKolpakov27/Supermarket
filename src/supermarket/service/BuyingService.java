@@ -9,6 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuyingService {
+    public static final BuyingService INSTANCE = new BuyingService();
+    private Buyer currentBuyer;
+
+    public void setCurrentBuyer(Buyer buyer) {
+        this.currentBuyer = buyer;
+    }
+
+    public Buyer getCurrentBuyer() {
+        return currentBuyer;
+    }
+
+    private BuyingService() {
+
+    }
 
     public static BuyingResult buySinglePiece(Product product, Buyer buyer, LocalDate localDate) {
         double price;
@@ -57,13 +71,13 @@ public class BuyingService {
     public static Buyer getRandomBuyer() {
         List<Buyer> byer_list = new ArrayList<>();
 
-        byer_list.add(new Buyer("Alena", 4500));
-        byer_list.add(new Buyer("Max", 2300));
-        byer_list.add(new Buyer("Misha", 750));
-        byer_list.add(new Buyer("Nikita", 1000));
-        byer_list.add(new Buyer("Alice", 1450));
-        byer_list.add(new Buyer("Sasha", 8000));
-        byer_list.add(new Buyer("Lena", 900));
+        byer_list.add(new Buyer("Алёна", 4500));
+        byer_list.add(new Buyer("Макс", 2300));
+        byer_list.add(new Buyer("Миша", 750));
+        byer_list.add(new Buyer("Никита", 1000));
+        byer_list.add(new Buyer("Алиса", 1450));
+        byer_list.add(new Buyer("Саша", 8000));
+        byer_list.add(new Buyer("Лена", 900));
 
         return byer_list.get((int) (Math.random() * 6));
     }

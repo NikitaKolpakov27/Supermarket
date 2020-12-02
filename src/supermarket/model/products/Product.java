@@ -44,7 +44,8 @@ public class Product {
     }
 
     public String toString() {
-        return "Категория: " + this.kind + ". Продукт: " + this.name + ". Срок годности до " + this.shelfDate.toString();
+//        return "Категория: " + this.kind + ". Продукт: " + this.name + ". Срок годности до " + this.shelfDate.toString();
+        return name + "";
     }
 
 }
