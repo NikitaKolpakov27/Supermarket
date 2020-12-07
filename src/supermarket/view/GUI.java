@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -22,6 +23,7 @@ import supermarket.model.Buyer;
 import supermarket.model.products.Alcohol;
 import supermarket.model.products.Product;
 import supermarket.service.BuyingService;
+import supermarket.service.DiscountService;
 import supermarket.service.ProductService;
 import supermarket.service.utils.Utils;
 
@@ -32,6 +34,15 @@ public class GUI extends Application {
 
     @FXML
     private URL location;
+
+    @FXML
+    private ImageView vodkaPic;
+
+    @FXML
+    private ImageView milkPic;
+
+    @FXML
+    private ImageView applesPic;
 
     @FXML
     private Label pokypatel;
@@ -54,18 +65,38 @@ public class GUI extends Application {
     @FXML
     private Label dayPanel;
 
+    @FXML
+    private Label vodkaProd;
+
+    @FXML
+    private Label milkProd;
+
+    @FXML
+    private Label applesProd;
+
+    @FXML
+    private Label vodkaPrice;
+
+    @FXML
+    private Label milkPrice;
+
+    @FXML
+    private Label applesPrice;
+
     private Product product;
 
     public Product getProduct() {
         return product;
     }
-    Buyer nikita = BuyingService.getRandomBuyer();
+    Buyer nikita = BuyingService.INSTANCE.getCurrentBuyer();
+
 
     @FXML
     void initialize() {
         List<List<Product>> list = new ArrayList<>();
         ProductService.addToList(list);
         LocalDate localDate = LocalDate.now();
+
 
         HashMap<Integer, Integer> map = Utils.findIndex(list, "Водка");
         HashMap<Integer, Integer> map2 = Utils.findIndex(list, "Яблоки");
@@ -99,8 +130,24 @@ public class GUI extends Application {
         vodka = list.get(a).get(b);
         apples = list.get(a2).get(b2);
         milk = list.get(a3).get(b3);
+        ProductService.checkShelfDate(list, localDate);
+
+
+        deleteIf(vodka, buyVodka, vodkaPic, localDate, vodkaProd, vodkaPrice);
+        deleteIf(milk, buyMilk, milkPic, localDate, milkProd, milkPrice);
+        deleteIf(apples, buyApples, applesPic, localDate, applesProd, applesPrice);
+
+        vodkaPrice.setText("Цена: " + vodka.getPrice());
+        milkPrice.setText("Цена: " + milk.getPrice());
+        applesPrice.setText("Цена: " + apples.getPrice());
+
+        discount(vodka, vodkaPrice, localDate);
+        discount(milk, milkPrice, localDate);
+        discount(apples, applesPrice, localDate);
 
         buyVodka.setOnAction(actionEvent -> {
+            BuyingService.INSTANCE.setCurrentProduct(vodka);
+
             if (nikita.getMoney() < vodka.getPrice()) {
                 checkMoney(buyVodka);
                 return;
@@ -120,14 +167,20 @@ public class GUI extends Application {
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.showAndWait();
+            stage.show();
             product = vodka;
         });
 
         buyApples.setOnAction(actionEvent -> {
+            BuyingService.INSTANCE.setCurrentProduct(apples);
+
             if (nikita.getMoney() < apples.getPrice()) {
                 checkMoney(buyApples);
                 return;
+            }
+
+            if (apples.hasExpired(apples, localDate)) {
+                buyApples.setVisible(false);
             }
 
             buyApples.getScene().getWindow().hide();
@@ -144,14 +197,20 @@ public class GUI extends Application {
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.showAndWait();
+            stage.show();
             product = apples;
         });
 
         buyMilk.setOnAction(actionEvent -> {
+            BuyingService.INSTANCE.setCurrentProduct(milk);
+
             if (nikita.getMoney() < milk.getPrice()) {
                 checkMoney(buyMilk);
                 return;
+            }
+
+            if (milk.hasExpired(milk, localDate)) {
+                buyApples.setVisible(false);
             }
 
             buyMilk.getScene().getWindow().hide();
@@ -168,7 +227,7 @@ public class GUI extends Application {
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.showAndWait();
+            stage.show();
             product = milk;
         });
 
@@ -219,8 +278,23 @@ public class GUI extends Application {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
         return;
+    }
+
+    private void deleteIf(Product product, Button button, ImageView image, LocalDate localDate, Label prod, Label price) {
+        if (product.hasExpired(product, localDate)) {
+            button.setVisible(false);
+            image.setVisible(false);
+            prod.setVisible(false);
+            price.setVisible(false);
+        }
+    }
+
+    private void discount(Product product, Label price, LocalDate localDate) {
+        if (product.hasDiscount(product, localDate)) {
+            price.setText("Цена со скидкой: " + DiscountService.discountCalc(product, localDate));
+        }
     }
 }
 

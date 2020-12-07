@@ -14,33 +14,14 @@ import supermarket.service.BuyingService;
 import supermarket.service.ProductService;
 import supermarket.view.Show;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main extends Application {
 
     public static void main(String[] args) {
-//        int days = 7;
+        int days = 7;
 //        Show show = new Show();
 //        LocalDate localDate = LocalDate.now();
-//
-//        List<List<Product>> list = new ArrayList<>();
-//        ProductService.addToList(list);
-//        HashMap<Integer, Integer> map = Utils.findIndex(list, "Водка");
-//
-//        int a = 0;
-//        int b = 0;
-//
-//        for (Map.Entry<Integer, Integer> pair : map.entrySet()) {
-//            a = pair.getKey();
-//            b = pair.getValue();
-//            System.out.println(pair.getKey() + " " + pair.getValue());
-//        }
-//
-//        System.out.println(list.get(a).get(b));
-
 
         launch(args);
 
@@ -59,6 +40,7 @@ public class Main extends Application {
 //
 //            localDate = Show.dayChange(localDate); // Смена дня
 //            days--;
+//            launch(args);
 //        }
     }
 

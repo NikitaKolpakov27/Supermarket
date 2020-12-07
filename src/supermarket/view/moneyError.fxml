@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="408.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="supermarket.view.moneyErrorController">
+<AnchorPane prefHeight="408.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="supermarket.view.MoneyErrorController">
     <children>
         <Label fx:id="errorMenu" alignment="CENTER" layoutX="88.0" layoutY="14.0" prefHeight="76.0" prefWidth="621.0" text="Ошибка" textFill="#ff0202">
             <font>

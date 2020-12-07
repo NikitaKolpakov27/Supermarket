@@ -10,7 +10,16 @@ import java.util.List;
 
 public class BuyingService {
     public static final BuyingService INSTANCE = new BuyingService();
-    private Buyer currentBuyer;
+    private Buyer currentBuyer = BuyingService.getRandomBuyer();
+    private Product currentProduct;
+
+    public Product getCurrentProduct() {
+        return currentProduct;
+    }
+
+    public void setCurrentProduct(Product currentProduct) {
+        this.currentProduct = currentProduct;
+    }
 
     public void setCurrentBuyer(Buyer buyer) {
         this.currentBuyer = buyer;
@@ -25,6 +34,7 @@ public class BuyingService {
     }
 
     public static BuyingResult buySinglePiece(Product product, Buyer buyer, LocalDate localDate) {
+        INSTANCE.setCurrentBuyer(buyer);
         double price;
 
         double virtualAccountBS = buyer.getVirtualAccount();
@@ -46,6 +56,7 @@ public class BuyingService {
     }
 
     public static BuyingResult buyWeighty(Product product, Buyer buyer, LocalDate localDate, double quan) {
+        INSTANCE.setCurrentBuyer(buyer);
         double virtualAccountBS = buyer.getVirtualAccount();
         double accountBS = buyer.getAccount();
 

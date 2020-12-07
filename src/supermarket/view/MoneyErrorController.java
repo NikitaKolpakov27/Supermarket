@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class moneyErrorController {
+public class MoneyErrorController {
 
     @FXML
     private ResourceBundle resources;
@@ -51,7 +51,7 @@ public class moneyErrorController {
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.showAndWait();
+            stage.show();
         });
     }
 }
