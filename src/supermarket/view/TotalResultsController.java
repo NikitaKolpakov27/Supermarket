@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import supermarket.model.Buyer;
+import supermarket.service.BuyingService;
 
 public class TotalResultsController {
 
@@ -22,13 +24,26 @@ public class TotalResultsController {
     private Button quit;
 
     @FXML
+    private Label totalMoney;
+
+    @FXML
+    private Label buyer;
+
+    @FXML
+    private Label money;
+
+    @FXML
     void initialize() {
         quit.setOnAction(actionEvent -> {
             quit.getScene().getWindow().hide();
         });
 
-        //todo: не передаётся объект!!!
-        List<String> newBuys = BuyController.BUY_INSTANCE.getNewBuys();
+        BuyController bc = BuyController.BUY_INSTANCE;
+        //todo: нужно написать "вы ничего не купили"
+
+
+        //List<String> newBuys = BuyController.BUY_INSTANCE.getNewBuys();
+        List<String> newBuys = bc.getNewBuys();
         StringBuilder result = new StringBuilder();
 
         for (String s : newBuys) {
@@ -36,5 +51,11 @@ public class TotalResultsController {
         }
 
         productList.setText(result.toString());
+        Buyer nikita = BuyingService.INSTANCE.getCurrentBuyer();
+        nikita.setMoney(nikita.getMoney() - nikita.getAccount());
+
+        buyer.setText(nikita.getName());
+        money.setText(String.valueOf(nikita.getMoney()));
+        totalMoney.setText(String.valueOf(nikita.getAccount()));
     }
 }

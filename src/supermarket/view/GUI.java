@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import supermarket.Main;
 import supermarket.model.Buyer;
@@ -293,9 +294,10 @@ public class GUI extends Application {
 
     private void discount(Product product, Label price, LocalDate localDate) {
         if (product.hasDiscount(product, localDate)) {
-            price.setText("Цена со скидкой: " + DiscountService.discountCalc(product, localDate));
+            price.setText("Цена: " + product.getPrice() + "; Цена со скидкой: " + DiscountService.discountCalc(product, localDate));
         }
     }
+
 }
 
 

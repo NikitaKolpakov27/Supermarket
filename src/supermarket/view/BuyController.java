@@ -77,6 +77,14 @@ public class BuyController {
         this.newBuys = newBuys;
     }
 
+    public Spinner<Double> getGrams() {
+        return grams;
+    }
+
+    public Spinner<Double> getQuantity() {
+        return quantity;
+    }
+
     @FXML
     void initialize() throws FileNotFoundException {
         List<String> buys = new ArrayList<>();
