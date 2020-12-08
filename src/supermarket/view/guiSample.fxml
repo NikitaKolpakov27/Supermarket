@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="supermarket.view.GUI">
+   <children>
+      <Label alignment="CENTER" layoutX="89.0" prefHeight="76.0" prefWidth="621.0" text="ДОБРО ПОЖАЛОВАТЬ В СУПЕРМАРКЕТ &quot;ШЕСТЁРОЧКА&quot;!!!" textFill="#ff0202">
+         <font>
+            <Font name="Corbel" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="246.0" layoutY="54.0" prefHeight="44.0" prefWidth="55.0" text="День:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="326.0" layoutY="98.0" prefHeight="57.0" prefWidth="148.0" text="Наши товары:">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="pokypatel" alignment="CENTER_RIGHT" layoutX="274.0" layoutY="436.0" prefHeight="44.0" prefWidth="154.0" text="Покупатель:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="588.0" layoutY="436.0" prefHeight="44.0" prefWidth="66.0" text="Деньги:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="vodkaPic" fitHeight="76.0" fitWidth="86.0" layoutX="75.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/vodka.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="milkPic" fitHeight="58.0" fitWidth="66.0" layoutX="213.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/milk.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="applesPic" fitHeight="66.0" fitWidth="93.0" layoutX="340.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/apples.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="buyVodka" layoutX="91.0" layoutY="314.0" mnemonicParsing="false" text="Купить" />
+      <Button fx:id="buyMilk" layoutX="215.0" layoutY="314.0" mnemonicParsing="false" text="Купить" />
+      <Button fx:id="buyApples" layoutX="356.0" layoutY="314.0" mnemonicParsing="false" text="Купить" />
+      <Label fx:id="buyerPanel" layoutX="439.0" layoutY="445.0" prefHeight="26.0" prefWidth="131.0" />
+      <Label fx:id="moneyPanel" layoutX="654.0" layoutY="450.0" prefHeight="26.0" prefWidth="123.0" />
+      <Label fx:id="dayPanel" layoutX="301.0" layoutY="67.0" prefHeight="26.0" prefWidth="148.0" />
+      <Label fx:id="vodkaProd" layoutX="99.0" layoutY="140.0" prefHeight="26.0" prefWidth="38.0" text="Водка" />
+      <Label fx:id="milkProd" layoutX="223.0" layoutY="140.0" prefHeight="26.0" prefWidth="46.0" text="Молоко" />
+      <Label fx:id="applesProd" layoutX="351.0" layoutY="142.0" prefHeight="26.0" prefWidth="54.0" text="Яблоки" />
+      <Label fx:id="vodkaPrice" layoutX="50.0" layoutY="225.0" prefHeight="84.0" prefWidth="123.0" textAlignment="CENTER" />
+      <Label fx:id="milkPrice" layoutX="186.0" layoutY="223.0" prefHeight="84.0" prefWidth="114.0" textAlignment="CENTER" />
+      <Label fx:id="applesPrice" layoutX="314.0" layoutY="234.0" prefHeight="76.0" prefWidth="131.0" textAlignment="CENTER" wrapText="true" />
+   </children>
+</AnchorPane>

@@ -1,11 +1,11 @@
-package supermarket.service;
+package supermarket.model;
 
-public class ReturnResult {
+public class BuyingResult {
+
     private double quantity;
     private double weighty_price;
     private double price;
-    private boolean horosho;
-
+    private boolean success;
 
     public double getQuantity() {
         return quantity;
@@ -19,8 +19,8 @@ public class ReturnResult {
         return price;
     }
 
-    public boolean isHorosho() {
-        return horosho;
+    public boolean isSuccess() {
+        return success;
     }
 
     public void setQuantity(double quantity) {
@@ -31,18 +31,18 @@ public class ReturnResult {
         this.weighty_price = weighty_price;
     }
 
-    public ReturnResult(double price, boolean horosho) {
+    public BuyingResult(double price, boolean success) {
         this.price = price;
-        this.horosho = horosho;
+        this.success = success;
     }
 
-    public ReturnResult(double quantity, double weighty_price, boolean horosho) {
+    public BuyingResult(double quantity, double weighty_price, boolean success) {
         this.quantity = quantity;
         this.weighty_price = weighty_price;
-        this.horosho = horosho;
+        this.success = success;
     }
 
-    public ReturnResult(boolean horosho) {
-        this.horosho = horosho;
+    public BuyingResult(boolean success) {
+        this.success = success;
     }
 }
